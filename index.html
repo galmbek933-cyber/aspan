@@ -338,6 +338,23 @@
 
   <!-- JavaScript: кнопки «Подробнее» открывают WhatsApp с названием курса -->
   <script>
-    const phone = "77000000000"; // ваш номер без +, пробелов и скобок
+    const phone = "77071606450"; // ваш номер без +, пробелов и скобок
 
-    function waLink(text)
+    function waLink(text) {
+      return "https://wa.me/" + phone + "?text=" + encodeURIComponent(text);
+    }
+
+    document.querySelectorAll("[data-course]").forEach(function (btn) {
+      btn.href = waLink("Здравствуйте! Хочу узнать подробнее про курс: " + btn.dataset.course);
+      btn.target = "_blank";
+      btn.rel = "noopener noreferrer";
+    });
+
+    const waMain = document.getElementById("wa-main");
+    waMain.href = waLink("Здравствуйте! Хочу записаться на пробный урок.");
+    waMain.target = "_blank";
+    waMain.rel = "noopener noreferrer";
+  </script>
+
+</body>
+</html>
