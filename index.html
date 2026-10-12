@@ -27,6 +27,7 @@
       overflow-x: hidden;
     }
     a { text-decoration: none; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
     /* ---------- ШАПКА ---------- */
     header { text-align: center; padding: 28px 20px 10px; position: relative; }
@@ -86,6 +87,7 @@
       background: linear-gradient(160deg, #DFF3FC, #B7E2F6);
     }
     .course-img img { width: 100%; height: 100%; object-fit: cover; }
+    /* Декоративные символы, пока нет фото */
     .math-art {
       font-family: 'Unbounded', sans-serif;
       font-weight: 800;
@@ -107,6 +109,8 @@
     .bg-orange { background: var(--orange); }
     .bg-teal   { background: var(--teal); }
     .bg-navy   { background: var(--blue); }
+    .bg-white  { background: var(--white); color: var(--text); }
+    .bg-white h3 { color: var(--blue-2); }
     .course-body h3 { font-size: 24px; font-weight: 800; line-height: 1.15; }
     .tag {
       display: inline-block;
@@ -171,36 +175,6 @@
       margin: 16px 0 30px;
     }
     .about h2 span { color: #FFD43B; }
-    .stats {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding: 0 20px 10px;
-      scrollbar-width: none;
-    }
-    .stat {
-      flex: 0 0 280px;
-      scroll-snap-align: center;
-      text-align: left;
-      padding: 18px;
-      border-radius: 24px;
-      background: rgba(255, 255, 255, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      color: var(--white);
-    }
-    .stat-img {
-      height: 150px;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      margin-bottom: 16px;
-    }
-    .stat b { font-size: 30px; font-weight: 800; display: block; }
-    .stat p { font-size: 16px; margin-top: 4px; }
 
     /* ---------- КОНТАКТЫ ---------- */
     .section-title {
@@ -230,8 +204,9 @@
 
     footer { background: var(--blue); color: #CFE3FA; text-align: center; padding: 20px; font-size: 13px; }
 
+    /* На широком экране карточки по центру */
     @media (min-width: 1000px) {
-      .courses, .stats { justify-content: center; }
+      .courses { justify-content: center; }
     }
   </style>
 </head>
@@ -252,6 +227,7 @@
 
     <article class="course">
       <div class="course-img">
+        <!-- Замените на фото: <img src="kazakh.jpg" alt="Курс казахского языка"> -->
         <div class="math-art"><span>Ә</span><span>Ғ</span><span>Қ</span><span>Ө</span></div>
       </div>
       <div class="course-body bg-blue">
@@ -338,24 +314,6 @@
   <section class="about">
     <span class="label">онлайн академия</span>
     <h2>ASPAN <span>EDUCATION</span></h2>
-
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-img">[фото учеников]</div>
-        <b>[0000]+ учеников</b>
-        <p>Детей и взрослых обучили</p>
-      </div>
-      <div class="stat">
-        <div class="stat-img">[фото преподавателей]</div>
-        <b>[00] преподавателей</b>
-        <p>Опытные преподаватели</p>
-      </div>
-      <div class="stat">
-        <div class="stat-img">[карта]</div>
-        <b>[00] стран</b>
-        <p>Наши ученики занимаются по всему миру</p>
-      </div>
-    </div>
   </section>
 
   <!-- КОНТАКТЫ -->
@@ -365,6 +323,7 @@
       <a class="contact-btn" id="wa-main" href="#">Написать на WhatsApp</a>
     </div>
 
+    <!-- Пейзаж: облака и холмы -->
     <svg class="landscape" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
       <ellipse cx="200" cy="60" rx="110" ry="28" fill="#fff" opacity="0.8"/>
       <ellipse cx="260" cy="45" rx="70" ry="26" fill="#fff" opacity="0.8"/>
@@ -377,24 +336,8 @@
 
   <footer>© 2026 Aspan Education. Все права защищены.</footer>
 
+  <!-- JavaScript: кнопки «Подробнее» открывают WhatsApp с названием курса -->
   <script>
-    const phone = "77071606450"; // ваш номер без +, пробелов и скобок
+    const phone = "77000000000"; // ваш номер без +, пробелов и скобок
 
-    function waLink(text) {
-      return "https://wa.me/" + phone + "?text=" + encodeURIComponent(text);
-    }
-
-    document.querySelectorAll("[data-course]").forEach(function (btn) {
-      btn.href = waLink("Здравствуйте! Хочу узнать подробнее про курс: " + btn.dataset.course);
-      btn.target = "_blank";
-      btn.rel = "noopener noreferrer";
-    });
-
-    const waMain = document.getElementById("wa-main");
-    waMain.href = waLink("Здравствуйте! Хочу записаться на пробный урок.");
-    waMain.target = "_blank";
-    waMain.rel = "noopener noreferrer";
-  </script>
-
-</body>
-</html>
+    function waLink(text)
